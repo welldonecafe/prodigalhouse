@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prodigal House Publishing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #374151; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        /* Custom Range Input (Audio timeline) */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: #000;
+            cursor: pointer;
+            margin-top: -4px;
+        }
+        .dark input[type=range]::-webkit-slider-thumb { background: #fff; }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e5e7eb;
+            border-radius: 2px;
+        }
+        .dark input[type=range]::-webkit-slider-runnable-track { background: #374151; }
+        input[type=range]:focus { outline: none; }
+        
+        /* Smooth Accordion */
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .accordion-content.expanded { grid-template-rows: 1fr; }
+        .accordion-inner { overflow: hidden; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 dark:bg-[#0a0a0a] dark:text-gray-100 min-h-screen transition-colors duration-300 antialiased flex flex-col font-sans">
+
+    <!-- Header -->
+    <header class="border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md z-10">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- Simple Logo SVG -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-black dark:text-white">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                </svg>
+                <h1 class="text-sm font-semibold tracking-wide uppercase">Prodigal House Publishing</h1>
+            </div>
+            
+            <button id="themeToggle" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors" aria-label="Toggle Theme">
+                <!-- Sun Icon -->
+                <svg id="sunIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Moon Icon -->
+                <svg id="moonIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content (Repo Listing) -->
+    <main class="flex-grow max-w-4xl mx-auto w-full p-4 mt-6">
+        
+        <!-- Directory Header -->
+        <div class="flex justify-between items-center text-xs font-mono text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-800 pb-2 mb-2 px-2">
+            <span>Name</span>
+            <span>Duration</span>
+        </div>
+
+        <!-- Audiobook List Container -->
+        <div id="audiobook-list" class="flex flex-col border border-gray-200 dark:border-gray-800 rounded-md overflow-hidden bg-gray-50 dark:bg-[#111]">
+            <!-- Audiobooks injected here by JS -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800 py-6 mt-12 text-center text-xs font-mono text-gray-400">
+        <p>&copy; <span id="year"></span> Prodigal House Publishing. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ----------------------------------------------------
+        // DATA: Add your audiobooks to this array
+        // ----------------------------------------------------
+        const audiobooks = [
+            {
+                id: "book-01",
+                title: "The Silent Echo",
+                author: "J.R. Scribe",
+                duration: "02:14",
+                synopsis: "In a world where sound is currency, a deaf thief discovers the most valuable secret of all: absolute silence. A thrilling journey through the quiet depths of the underground.",
+                coverUrl: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=400&h=400",
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" // Replace with your file
+            },
+            {
+                id: "book-02",
+                title: "Algorithms of the Heart",
+                author: "Elena Vance",
+                duration: "03:45",
+                synopsis: "When an advanced AI is tasked with understanding human emotion, it begins writing poetry that inadvertently hacks the mainframe of the world's largest defense network.",
+                coverUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400&h=400",
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" // Replace with your file
+            },
+            {
+                id: "book-03",
+                title: "Wasteland Wanderers",
+                author: "Marcus Thorne",
+                duration: "05:12",
+                synopsis: "Two outcasts navigate the desolate ruins of neo-Earth. With only a rusty compass and rumors of a fertile valley, they must outrun the dust storms and what hides within them.",
+                coverUrl: "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&q=80&w=400&h=400",
+                audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" // Replace with your file
+            }
+        ];
+
+        // ----------------------------------------------------
+        // APP LOGIC
+        // ----------------------------------------------------
+        const listContainer = document.getElementById('audiobook-list');
+        let currentAudio = null;
+        let currentPlayBtn = null;
+
+        // Render Audiobooks
+        function renderAudiobooks() {
+            audiobooks.forEach((book, index) => {
+                const isLast = index === audiobooks.length - 1;
+                
+                // Construct HTML for each book
+                const html = `
+                    <!-- Row Item -->
+                    <div class="repo-item flex justify-between items-center p-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1a1a1a] transition-colors ${!isLast ? 'border-b border-gray-200 dark:border-gray-800' : ''}" onclick="toggleAccordion('${book.id}')">
+                        <div class="flex items-center gap-3 font-mono text-sm">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                            <span class="font-medium text-gray-900 dark:text-gray-200">${book.title.replace(/\s+/g, '-').toLowerCase()}/</span>
+                        </div>
+                        <span class="font-mono text-xs text-gray-500">${book.duration}</span>
+                    </div>
+
+                    <!-- Expanded Content -->
+                    <div id="content-${book.id}" class="accordion-content bg-white dark:bg-[#0a0a0a] ${!isLast ? 'border-b border-gray-200 dark:border-gray-800' : ''}">
+                        <div class="accordion-inner">
+                            <div class="p-6 flex flex-col sm:flex-row gap-6">
+                                <!-- Album Art -->
+                                <div class="w-32 h-32 sm:w-40 sm:h-40 flex-shrink-0 relative group">
+                                    <img src="${book.coverUrl}" alt="Cover art for ${book.title}" class="w-full h-full object-cover rounded shadow-sm grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <div class="absolute inset-0 border border-black/10 dark:border-white/10 rounded pointer-events-none"></div>
+                                </div>
+                                
+                                <!-- Details & Player -->
+                                <div class="flex-grow flex flex-col justify-between">
+                                    <div>
+                                        <h2 class="text-xl font-semibold mb-1">${book.title}</h2>
+                                        <p class="text-xs font-mono text-gray-500 mb-3">By ${book.author}</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">${book.synopsis}</p>
+                                    </div>
+                                    
+                                    <!-- Custom Audio Player -->
+                                    <div class="flex items-center gap-4 bg-gray-50 dark:bg-[#111] p-3 rounded-md border border-gray-200 dark:border-gray-800">
+                                        <button id="playBtn-${book.id}" class="play-toggle p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition" onclick="togglePlay(event, '${book.id}', '${book.audioUrl}')">
+                                            <!-- Play Icon -->
+                                            <svg class="play-icon w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                            <!-- Pause Icon -->
+                                            <svg class="pause-icon w-4 h-4 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+                                        
+                                        <div class="flex-grow flex items-center gap-3">
+                                            <span id="currentTime-${book.id}" class="text-xs font-mono text-gray-500 w-10 text-right">0:00</span>
+                                            <input type="range" id="seek-${book.id}" value="0" class="w-full" onchange="seekAudio(event, '${book.id}')" oninput="updateSeekUI(event, '${book.id}')">
+                                            <span id="duration-${book.id}" class="text-xs font-mono text-gray-500 w-10">${book.duration}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        // Accordion Toggle Logic
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const isExpanded = content.classList.contains('expanded');
+            
+            // Close all other accordions (Optional: remove if you want multiple open)
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.classList.remove('expanded');
+            });
+
+            if (!isExpanded) {
+                content.classList.add('expanded');
+            }
+        }
+
+        // ----------------------------------------------------
+        // AUDIO PLAYER LOGIC
+        // ----------------------------------------------------
+        
+        // Single global audio element to ensure only one plays at a time
+        const globalAudio = new Audio();
+        let activeBookId = null;
+
+        function togglePlay(event, bookId, audioUrl) {
+            event.stopPropagation(); // Prevent accordion from toggling
+
+            const playBtn = document.getElementById(`playBtn-${bookId}`);
+            const playIcon = playBtn.querySelector('.play-icon');
+            const pauseIcon = playBtn.querySelector('.pause-icon');
+
+            // If clicking a different book's play button
+            if (activeBookId !== bookId) {
+                // Reset previous UI
+                if (activeBookId) resetPlayerUI(activeBookId);
+                
+                activeBookId = bookId;
+                globalAudio.src = audioUrl;
+                globalAudio.load();
+                globalAudio.play();
+                
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                // Toggling current book
+                if (globalAudio.paused) {
+                    globalAudio.play();
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                } else {
+                    globalAudio.pause();
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                }
+            }
+        }
+
+        function resetPlayerUI(id) {
+            const btn = document.getElementById(`playBtn-${id}`);
+            if(btn) {
+                btn.querySelector('.play-icon').classList.remove('hidden');
+                btn.querySelector('.pause-icon').classList.add('hidden');
+            }
+            const seek = document.getElementById(`seek-${id}`);
+            if(seek) seek.value = 0;
+            const current = document.getElementById(`currentTime-${id}`);
+            if(current) current.textContent = "0:00";
+        }
+
+        // Global Audio Event Listeners
+        globalAudio.addEventListener('timeupdate', () => {
+            if (!activeBookId) return;
+            
+            const seekBar = document.getElementById(`seek-${activeBookId}`);
+            const currentTimeDisplay = document.getElementById(`currentTime-${activeBookId}`);
+            const durationDisplay = document.getElementById(`duration-${activeBookId}`);
+
+            if (globalAudio.duration) {
+                // Update slider value
+                const value = (100 / globalAudio.duration) * globalAudio.currentTime;
+                seekBar.value = value;
+                
+                // Update time text
+                currentTimeDisplay.textContent = formatTime(globalAudio.currentTime);
+                // Only update duration if it hasn't been set by metadata yet
+                if(durationDisplay.textContent.includes(':') && durationDisplay.textContent !== formatTime(globalAudio.duration)){
+                    durationDisplay.textContent = formatTime(globalAudio.duration);
+                }
+            }
+        });
+
+        globalAudio.addEventListener('ended', () => {
+            if (activeBookId) {
+                resetPlayerUI(activeBookId);
+                activeBookId = null;
+            }
+        });
+
+        // Seek Audio (when user drops slider)
+        window.seekAudio = function(event, bookId) {
+            event.stopPropagation();
+            if (activeBookId === bookId && globalAudio.duration) {
+                const time = globalAudio.duration * (event.target.value / 100);
+                globalAudio.currentTime = time;
+            }
+        }
+
+        // Update UI while dragging (prevent snapping back)
+        window.updateSeekUI = function(event, bookId) {
+            event.stopPropagation();
+            if (activeBookId === bookId && globalAudio.duration) {
+                const time = globalAudio.duration * (event.target.value / 100);
+                document.getElementById(`currentTime-${bookId}`).textContent = formatTime(time);
+            }
+        }
+
+        // Helper: Format seconds to M:SS
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // ----------------------------------------------------
+        // THEME TOGGLE LOGIC
+        // ----------------------------------------------------
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const htmlElement = document.documentElement;
+
+        // Check local storage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            htmlElement.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+        } else {
+            htmlElement.classList.remove('dark');
+            moonIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            const isDark = htmlElement.classList.contains('dark');
+            
+            // Toggle Icons
+            if (isDark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Initialize App
+        renderAudiobooks();
+    </script>
+</body>
+</html>
