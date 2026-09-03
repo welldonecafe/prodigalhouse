@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prodigal House Publishing</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'><path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20'/></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,13 +70,16 @@
 <body class="bg-white text-gray-900 dark:bg-[#0a0a0a] dark:text-gray-100 min-h-screen transition-colors duration-300 antialiased flex flex-col font-sans">
 
     <header class="border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md z-10">
-        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-black dark:text-white">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-start">
+            <a href="/" class="flex items-start gap-3 group">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-black dark:text-white group-hover:opacity-75 transition-opacity">
                     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
                 </svg>
-                <h1 class="text-sm font-semibold tracking-wide uppercase">Prodigal House Publishing</h1>
-            </div>
+                <div class="flex flex-col">
+                    <h1 class="text-sm font-semibold tracking-wide uppercase group-hover:opacity-75 transition-opacity">Prodigal House Publishing</h1>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 max-w-sm">An independent press for aspiring writers and select publications.</p>
+                </div>
+            </a>
             
             <button id="themeToggle" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors" aria-label="Toggle Theme">
                 <svg id="sunIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -124,30 +128,30 @@
                 id: "all-you-got",
                 title: "All You Got",
                 author: "Jason Deramo",
-                duration: "19 Chapters",
+                duration: "20 Chapters",
                 synopsis: "Thomas Peterson is an idealist teacher facing his biggest challenge yet: Eli Sinclair, a brilliant but troubled student with a bit of an attitude. That all changes when Thomas opens a new world for Eli using the sport of fencing as a metaphor for conquering life's challenges.",
-                coverUrl: "audio/All You Got/art/ayg_album.png",
+                coverUrl: "audio/all-you-got/art/ayg_album.png",
                 chapters: [
-                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/All You Got/audio/01 - Jason Deramo - Opening Credits.mp3" },
-                    { title: "Dedication", duration: "--:--", audioUrl: "audio/All You Got/audio/02 - Jason Deramo - Dedication.mp3" },
-                    { title: "Author's Note", duration: "--:--", audioUrl: "audio/All You Got/audio/03 - Jason Deramo - Author_s Note.mp3" },
-                    { title: "Chapter 1", duration: "--:--", audioUrl: "audio/All You Got/audio/04 - Jason Deramo - Chapter 1.mp3" },
-                    { title: "Chapter 2", duration: "--:--", audioUrl: "audio/All You Got/audio/05 - Jason Deramo - Chapter 2.mp3" },
-                    { title: "Chapter 3", duration: "--:--", audioUrl: "audio/All You Got/audio/06 - Jason Deramo - Chapter 3.mp3" },
-                    { title: "Chapter 4", duration: "--:--", audioUrl: "audio/All You Got/audio/07 - Jason Deramo - Chapter 4.mp3" },
-                    { title: "Chapter 5", duration: "--:--", audioUrl: "audio/All You Got/audio/08 - Jason Deramo - Chapter 5.mp3" },
-                    { title: "Chapter 6", duration: "--:--", audioUrl: "audio/All You Got/audio/09 - Jason Deramo - Chapter 6.mp3" },
-                    { title: "Chapter 7", duration: "--:--", audioUrl: "audio/All You Got/audio/10 - Jason Deramo - Chapter 7.mp3" },
-                    { title: "Chapter 8", duration: "--:--", audioUrl: "audio/All You Got/audio/11 - Jason Deramo - Chapter 8.mp3" },
-                    { title: "Chapter 9", duration: "--:--", audioUrl: "audio/All You Got/audio/12 - Jason Deramo - Chapter 9.mp3" },
-                    { title: "Chapter 10", duration: "--:--", audioUrl: "audio/All You Got/audio/13 - Jason Deramo - Chapter 10.mp3" },
-                    { title: "Chapter 11", duration: "--:--", audioUrl: "audio/All You Got/audio/14 - Jason Deramo - Chapter 11.mp3" },
-                    { title: "Chapter 12", duration: "--:--", audioUrl: "audio/All You Got/audio/15 - Jason Deramo - Chapter 12.mp3" },
-                    { title: "Chapter 13", duration: "--:--", audioUrl: "audio/All You Got/audio/16 - Jason Deramo - Chapter 13.mp3" },
-                    { title: "Chapter 14", duration: "--:--", audioUrl: "audio/All You Got/audio/17 - Jason Deramo - Chapter 14.mp3" },
-                    { title: "Chapter 15", duration: "--:--", audioUrl: "audio/All You Got/audio/18 - Jason Deramo - Chapter 15.mp3" },
-                    { title: "About", duration: "--:--", audioUrl: "audio/All You Got/audio/19 - Jason Deramo - About.mp3" },
-                    { title: "Glossary", duration: "--:--", audioUrl: "audio/All You Got/audio/20 - Jason Deramo - Glossary.mp3" }
+                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/all-you-got/audio/01 - Jason Deramo - Opening Credits.mp3" },
+                    { title: "Dedication", duration: "--:--", audioUrl: "audio/all-you-got/audio/02 - Jason Deramo - Dedication.mp3" },
+                    { title: "Author's Note", duration: "--:--", audioUrl: "audio/all-you-got/audio/03 - Jason Deramo - Author_s Note.mp3" },
+                    { title: "Chapter 1", duration: "--:--", audioUrl: "audio/all-you-got/audio/04 - Jason Deramo - Chapter 1.mp3" },
+                    { title: "Chapter 2", duration: "--:--", audioUrl: "audio/all-you-got/audio/05 - Jason Deramo - Chapter 2.mp3" },
+                    { title: "Chapter 3", duration: "--:--", audioUrl: "audio/all-you-got/audio/06 - Jason Deramo - Chapter 3.mp3" },
+                    { title: "Chapter 4", duration: "--:--", audioUrl: "audio/all-you-got/audio/07 - Jason Deramo - Chapter 4.mp3" },
+                    { title: "Chapter 5", duration: "--:--", audioUrl: "audio/all-you-got/audio/08 - Jason Deramo - Chapter 5.mp3" },
+                    { title: "Chapter 6", duration: "--:--", audioUrl: "audio/all-you-got/audio/09 - Jason Deramo - Chapter 6.mp3" },
+                    { title: "Chapter 7", duration: "--:--", audioUrl: "audio/all-you-got/audio/10 - Jason Deramo - Chapter 7.mp3" },
+                    { title: "Chapter 8", duration: "--:--", audioUrl: "audio/all-you-got/audio/11 - Jason Deramo - Chapter 8.mp3" },
+                    { title: "Chapter 9", duration: "--:--", audioUrl: "audio/all-you-got/audio/12 - Jason Deramo - Chapter 9.mp3" },
+                    { title: "Chapter 10", duration: "--:--", audioUrl: "audio/all-you-got/audio/13 - Jason Deramo - Chapter 10.mp3" },
+                    { title: "Chapter 11", duration: "--:--", audioUrl: "audio/all-you-got/audio/14 - Jason Deramo - Chapter 11.mp3" },
+                    { title: "Chapter 12", duration: "--:--", audioUrl: "audio/all-you-got/audio/15 - Jason Deramo - Chapter 12.mp3" },
+                    { title: "Chapter 13", duration: "--:--", audioUrl: "audio/all-you-got/audio/16 - Jason Deramo - Chapter 13.mp3" },
+                    { title: "Chapter 14", duration: "--:--", audioUrl: "audio/all-you-got/audio/17 - Jason Deramo - Chapter 14.mp3" },
+                    { title: "Chapter 15", duration: "--:--", audioUrl: "audio/all-you-got/audio/18 - Jason Deramo - Chapter 15.mp3" },
+                    { title: "About", duration: "--:--", audioUrl: "audio/all-you-got/audio/19 - Jason Deramo - About.mp3" },
+                    { title: "Glossary", duration: "--:--", audioUrl: "audio/all-you-got/audio/20 - Jason Deramo - Glossary.mp3" }
                 ]
             },
             {
@@ -156,27 +160,27 @@
                 author: "Jason Deramo",
                 duration: "19 Chapters",
                 synopsis: "My Son Rising is a message of hope and redemption for wandering souls desperate to know true freedom. Reclaim your rightful purpose as spiritual sons, and discover timeless wisdom and healing found within these letters.",
-                coverUrl: "audio/My Son Rising/art/msr_album.jpg",
+                coverUrl: "audio/my-son-rising/art/msr_album.jpg",
                 chapters: [
-                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/My Son Rising/audio/01 - Jason Deramo - Opening Credits.mp3" },
-                    { title: "Introduction", duration: "--:--", audioUrl: "audio/My Son Rising/audio/02 - Jason Deramo - Introduction.mp3" },
-                    { title: "Chapter 1 - Love", duration: "--:--", audioUrl: "audio/My Son Rising/audio/03 - Jason Deramo - Chapter 1 - Love.mp3" },
-                    { title: "Chapter 2 - Strength", duration: "--:--", audioUrl: "audio/My Son Rising/audio/04 - Jason Deramo - Chapter 2 - Strength.mp3" },
-                    { title: "Chapter 3 - Truth", duration: "--:--", audioUrl: "audio/My Son Rising/audio/05 - Jason Deramo - Chapter 3 - Truth.mp3" },
-                    { title: "Chapter 4 - Honor", duration: "--:--", audioUrl: "audio/My Son Rising/audio/06 - Jason Deramo - Chapter 4 - Honor.mp3" },
-                    { title: "Chapter 5 - Purity", duration: "--:--", audioUrl: "audio/My Son Rising/audio/07 - Jason Deramo - Chapter 5 - Purity.mp3" },
-                    { title: "Chapter 6 - Forgiveness", duration: "--:--", audioUrl: "audio/My Son Rising/audio/08 - Jason Deramo - Chapter 6 - Forgiveness.mp3" },
-                    { title: "Chapter 7 - Vision", duration: "--:--", audioUrl: "audio/My Son Rising/audio/09 - Jason Deramo - Chapter 7 - Vision.mp3" },
-                    { title: "Chapter 8 - Rest", duration: "--:--", audioUrl: "audio/My Son Rising/audio/10 - Jason Deramo - Chapter 8 - Rest.mp3" },
-                    { title: "Chapter 9 - Patience", duration: "--:--", audioUrl: "audio/My Son Rising/audio/11 - Jason Deramo - Chapter 9 - Patience.mp3" },
-                    { title: "Chapter 10 - Humility", duration: "--:--", audioUrl: "audio/My Son Rising/audio/12 - Jason Deramo - Chapter 10 - Humility.mp3" },
-                    { title: "Chapter 11 - Trust", duration: "--:--", audioUrl: "audio/My Son Rising/audio/13 - Jason Deramo - Chapter 11 - Trust.mp3" },
-                    { title: "Chapter 12 - Fight", duration: "--:--", audioUrl: "audio/My Son Rising/audio/14 - Jason Deramo - Chapter 12 - Fight.mp3" },
-                    { title: "Chapter 13 - Faith", duration: "--:--", audioUrl: "audio/My Son Rising/audio/15 - Jason Deramo - Chapter 13 - Faith.mp3" },
-                    { title: "Chapter 14 - Hope", duration: "--:--", audioUrl: "audio/My Son Rising/audio/16 - Jason Deramo - Chapter 14 - Hope.mp3" },
-                    { title: "Chapter 15 - Perseverance", duration: "--:--", audioUrl: "audio/My Son Rising/audio/17 - Jason Deramo - Chapter 15 - Perseverance.mp3" },
-                    { title: "Acknowledgements & About", duration: "--:--", audioUrl: "audio/My Son Rising/audio/18 - Jason Deramo - Acknowledgements & About.mp3" },
-                    { title: "Closing Credits", duration: "--:--", audioUrl: "audio/My Son Rising/audio/19 - Jason Deramo - Closing Credits.mp3" }
+                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/my-son-rising/audio/00 - Jason Deramo - Opening Credits.mp3" },
+                    { title: "Acknowledgements & About", duration: "--:--", audioUrl: "audio/my-son-rising/audio/01 - Jason Deramo - Acknowledgements & About.mp3" },
+                    { title: "Introduction", duration: "--:--", audioUrl: "audio/my-son-rising/audio/02 - Jason Deramo - Introduction.mp3" },
+                    { title: "Chapter 1 - Love", duration: "--:--", audioUrl: "audio/my-son-rising/audio/03 - Jason Deramo - Chapter 1 - Love.mp3" },
+                    { title: "Chapter 2 - Strength", duration: "--:--", audioUrl: "audio/my-son-rising/audio/04 - Jason Deramo - Chapter 2 - Strength.mp3" },
+                    { title: "Chapter 3 - Truth", duration: "--:--", audioUrl: "audio/my-son-rising/audio/05 - Jason Deramo - Chapter 3 - Truth.mp3" },
+                    { title: "Chapter 4 - Honor", duration: "--:--", audioUrl: "audio/my-son-rising/audio/06 - Jason Deramo - Chapter 4 - Honor.mp3" },
+                    { title: "Chapter 5 - Purity", duration: "--:--", audioUrl: "audio/my-son-rising/audio/07 - Jason Deramo - Chapter 5 - Purity.mp3" },
+                    { title: "Chapter 6 - Forgiveness", duration: "--:--", audioUrl: "audio/my-son-rising/audio/08 - Jason Deramo - Chapter 6 - Forgiveness.mp3" },
+                    { title: "Chapter 7 - Vision", duration: "--:--", audioUrl: "audio/my-son-rising/audio/09 - Jason Deramo - Chapter 7 - Vision.mp3" },
+                    { title: "Chapter 8 - Rest", duration: "--:--", audioUrl: "audio/my-son-rising/audio/10 - Jason Deramo - Chapter 8 - Rest.mp3" },
+                    { title: "Chapter 9 - Patience", duration: "--:--", audioUrl: "audio/my-son-rising/audio/11 - Jason Deramo - Chapter 9 - Patience.mp3" },
+                    { title: "Chapter 10 - Humility", duration: "--:--", audioUrl: "audio/my-son-rising/audio/12 - Jason Deramo - Chapter 10 - Humility.mp3" },
+                    { title: "Chapter 11 - Trust", duration: "--:--", audioUrl: "audio/my-son-rising/audio/13 - Jason Deramo - Chapter 11 - Trust.mp3" },
+                    { title: "Chapter 12 - Fight", duration: "--:--", audioUrl: "audio/my-son-rising/audio/14 - Jason Deramo - Chapter 12 - Fight.mp3" },
+                    { title: "Chapter 13 - Faith", duration: "--:--", audioUrl: "audio/my-son-rising/audio/15 - Jason Deramo - Chapter 13 - Faith.mp3" },
+                    { title: "Chapter 14 - Hope", duration: "--:--", audioUrl: "audio/my-son-rising/audio/16 - Jason Deramo - Chapter 14 - Hope.mp3" },
+                    { title: "Chapter 15 - Perseverance", duration: "--:--", audioUrl: "audio/my-son-rising/audio/17 - Jason Deramo - Chapter 15 - Perseverance.mp3" },
+                    { title: "Closing Credits", duration: "--:--", audioUrl: "audio/my-son-rising/audio/19 - Jason Deramo - Closing Credits.mp3" }
                 ]
             },
             {
@@ -185,16 +189,15 @@
                 author: "Jason Deramo",
                 duration: "7 Chapters",
                 synopsis: "Young men are largely absent from leadership and lacking in accountability among their families and society at large. So, where are they? The heart of the matter is not where you find them, but where they are found. Prone examines the perils of this alarming phenomenon while seeking fresh insights from Biblical and ancient sources of wisdom.",
-                coverUrl: "audio/Prone/art/pront_album.png",
-                pdfUrl: "audio/Prone/prone.pdf",
+                coverUrl: "audio/prone/art/pront_album.png",
                 chapters: [
-                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/Prone/audio/01 - Jason Deramo - Opening Credits.mp3" },
-                    { title: "Preface", duration: "--:--", audioUrl: "audio/Prone/audio/02 - Jason Deramo - Preface.mp3" },
-                    { title: "Definitions", duration: "--:--", audioUrl: "audio/Prone/audio/03 - Jason Deramo - Definitions.mp3" },
-                    { title: "Prone", duration: "--:--", audioUrl: "audio/Prone/audio/04 - Jason Deramo - Prone.mp3" },
-                    { title: "Pursuit", duration: "--:--", audioUrl: "audio/Prone/audio/05 - Jason Deramo - Pursuit.mp3" },
-                    { title: "About", duration: "--:--", audioUrl: "audio/Prone/audio/06 - Jason Deramo - About.mp3" },
-                    { title: "References", duration: "--:--", audioUrl: "audio/Prone/audio/07 - Jason Deramo - References.mp3" }
+                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/prone/audio/01 - Jason Deramo - Opening Credits.mp3" },
+                    { title: "Preface", duration: "--:--", audioUrl: "audio/prone/audio/02 - Jason Deramo - Preface.mp3" },
+                    { title: "Definitions", duration: "--:--", audioUrl: "audio/prone/audio/03 - Jason Deramo - Definitions.mp3" },
+                    { title: "Prone", duration: "--:--", audioUrl: "audio/prone/audio/04 - Jason Deramo - Prone.mp3" },
+                    { title: "Pursuit", duration: "--:--", audioUrl: "audio/prone/audio/05 - Jason Deramo - Pursuit.mp3" },
+                    { title: "About", duration: "--:--", audioUrl: "audio/prone/audio/06 - Jason Deramo - About.mp3" },
+                    { title: "References", duration: "--:--", audioUrl: "audio/prone/audio/07 - Jason Deramo - References.mp3" }
                 ]
             },
             {
@@ -203,30 +206,30 @@
                 author: "Jason Deramo",
                 duration: "22 Chapters",
                 synopsis: "Dana Ripley is a young savant majoring in theoretical physics at MIT. She soon finds herself interning at a leading biotech company on the verge of a scientific breakthrough. What Dana accidentally uncovers will not only jeopardize her own safety but potentially impact humanity at large.",
-                coverUrl: "audio/Shells of Infinity/shells_album.png",
+                coverUrl: "audio/shells-of-infinity/art/shells_album.png",
                 chapters: [
-                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/01 - Jason Deramo - Opening Credits.mp3" },
-                    { title: "Dedication", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/02 - Jason Deramo - Dedication.mp3" },
-                    { title: "Quotes", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/03 - Jason Deramo - Quotes.mp3" },
-                    { title: "Chapter 1", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/04 - Jason Deramo - Chapter 1.mp3" },
-                    { title: "Chapter 2", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/05 - Jason Deramo - Chapter 2.mp3" },
-                    { title: "Chapter 3", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/06 - Jason Deramo - Chapter 3.mp3" },
-                    { title: "Chapter 4", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/07 - Jason Deramo - Chapter 4.mp3" },
-                    { title: "Chapter 5", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/08 - Jason Deramo - Chapter 5.mp3" },
-                    { title: "Chapter 6", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/09 - Jason Deramo - Chapter 6.mp3" },
-                    { title: "Chapter 7", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/10 - Jason Deramo - Chapter 7.mp3" },
-                    { title: "Chapter 8", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/11 - Jason Deramo - Chapter 8.mp3" },
-                    { title: "Chapter 9", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/12 - Jason Deramo - Chapter 9.mp3" },
-                    { title: "Chapter 10", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/13 - Jason Deramo - Chapter 10.mp3" },
-                    { title: "Chapter 11", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/14 - Jason Deramo - Chapter 11.mp3" },
-                    { title: "Chapter 12", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/15 - Jason Deramo - Chapter 12.mp3" },
-                    { title: "Chapter 13", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/16 - Jason Deramo - Chapter 13.mp3" },
-                    { title: "Chapter 14", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/17 - Jason Deramo - Chapter 14.mp3" },
-                    { title: "Chapter 15", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/18 - Jason Deramo - Chapter 15.mp3" },
-                    { title: "Chapter 16", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/19 - Jason Deramo - Chapter 16.mp3" },
-                    { title: "Chapter 17", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/20 - Jason Deramo - Chapter 17.mp3" },
-                    { title: "Resources", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/21 - Jason Deramo - Resources.mp3" },
-                    { title: "About", duration: "--:--", audioUrl: "audio/Shells of Infinity/audio/22 - Jason Deramo - About.mp3" }
+                    { title: "Opening Credits", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/01 - Jason Deramo - Opening Credits.mp3" },
+                    { title: "Dedication", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/02 - Jason Deramo - Dedication.mp3" },
+                    { title: "Quotes", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/03 - Jason Deramo - Quotes.mp3" },
+                    { title: "Chapter 1", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/04 - Jason Deramo - Chapter 1.mp3" },
+                    { title: "Chapter 2", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/05 - Jason Deramo - Chapter 2.mp3" },
+                    { title: "Chapter 3", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/06 - Jason Deramo - Chapter 3.mp3" },
+                    { title: "Chapter 4", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/07 - Jason Deramo - Chapter 4.mp3" },
+                    { title: "Chapter 5", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/08 - Jason Deramo - Chapter 5.mp3" },
+                    { title: "Chapter 6", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/09 - Jason Deramo - Chapter 6.mp3" },
+                    { title: "Chapter 7", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/10 - Jason Deramo - Chapter 7.mp3" },
+                    { title: "Chapter 8", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/11 - Jason Deramo - Chapter 8.mp3" },
+                    { title: "Chapter 9", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/12 - Jason Deramo - Chapter 9.mp3" },
+                    { title: "Chapter 10", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/13 - Jason Deramo - Chapter 10.mp3" },
+                    { title: "Chapter 11", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/14 - Jason Deramo - Chapter 11.mp3" },
+                    { title: "Chapter 12", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/15 - Jason Deramo - Chapter 12.mp3" },
+                    { title: "Chapter 13", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/16 - Jason Deramo - Chapter 13.mp3" },
+                    { title: "Chapter 14", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/17 - Jason Deramo - Chapter 14.mp3" },
+                    { title: "Chapter 15", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/18 - Jason Deramo - Chapter 15.mp3" },
+                    { title: "Chapter 16", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/19 - Jason Deramo - Chapter 16.mp3" },
+                    { title: "Chapter 17", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/20 - Jason Deramo - Chapter 17.mp3" },
+                    { title: "Resources", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/21 - Jason Deramo - Resources.mp3" },
+                    { title: "About", duration: "--:--", audioUrl: "audio/shells-of-infinity/audio/22 - Jason Deramo - About.mp3" }
                 ]
             }
         ];
@@ -521,11 +524,10 @@
         const moonIcon = document.getElementById('moonIcon');
         const htmlElement = document.documentElement;
 
-        // Check local storage or system preference
+        // Check local storage (default to light if no preference saved)
         const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        if (savedTheme === 'dark') {
             htmlElement.classList.add('dark');
             sunIcon.classList.remove('hidden');
         } else {
