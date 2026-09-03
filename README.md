@@ -1,6 +1,6 @@
 # 🕮 Prodigal House Publishing
 
-> Independent literary imprint & audiobook repository. Minimalist, open-web audio distribution by Jason Deramo.
+> Independent literary imprint & audiobook repository.
 
 [![Live Site](https://img.shields.io/badge/Live-prodigalhouse.net-black?style=flat-square)](https://prodigalhouse.net)
 [![GitHub Pages](https://img.shields.io/badge/Hosted%20with-GitHub%20Pages-181717?style=flat-square&logo=github)](https://pages.github.com/)
