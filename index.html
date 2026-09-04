@@ -72,7 +72,7 @@
     <!-- Top Navigation Header -->
     <header class="border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md z-20">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-start gap-3 group">
+            <a href="#" id="homeLink" class="flex items-start gap-3 group">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-black dark:text-white group-hover:opacity-75 transition-opacity shrink-0">
                     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
                 </svg>
@@ -123,7 +123,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="pt-6 hidden">
+        <section id="contact" class="pt-6 hidden scroll-mt-24">
             <div class="border-t border-gray-200 dark:border-gray-800 pt-8 mb-6">
                 <div class="flex items-center gap-2 mb-1">
                     <span class="inline-block w-2 h-2 rounded-full bg-yellow-400"></span>
@@ -133,9 +133,6 @@
             </div>
 
             <div class="border border-gray-200 dark:border-gray-800 rounded-lg p-6 md:p-8 bg-gray-50/50 dark:bg-[#111]/60 backdrop-blur-sm">
-                
-                <!-- Status Notifications -->
-                <div id="formNotification" class="hidden mb-6 p-4 rounded-md text-xs font-mono border transition-all"></div>
 
                 <form id="submissionForm" class="space-y-6" enctype="multipart/form-data" novalidate>
                     <!-- Anti-bot honeypot field -->
@@ -205,6 +202,9 @@
                             </svg>
                         </button>
                     </div>
+
+                    <!-- Status Notifications (Moved Below Submit Button) -->
+                    <div id="formNotification" class="hidden mt-6 p-4 rounded-md text-xs font-mono border transition-all"></div>
                 </form>
             </div>
         </section>
@@ -213,7 +213,6 @@
 
     <footer class="border-t border-gray-200 dark:border-gray-800 py-8 mt-16 text-center text-xs font-mono text-gray-400">
         <p>&copy; <span id="year"></span> Prodigal House Publishing. All rights reserved.</p>
-        <p class="text-[10px] mt-1 text-gray-500">Contact: prodigalhouse@proton.me</p>
     </footer>
 
     <script>
@@ -636,6 +635,28 @@
         });
 
         // ----------------------------------------------------
+        // NAVIGATION / HOME LINK CONTROLLER
+        // ----------------------------------------------------
+        const homeLink = document.getElementById('homeLink');
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Collapse all audiobook accordion menus
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.classList.remove('expanded');
+            });
+            
+            // Hide the contact section
+            const contactSection = document.getElementById('contact');
+            if(contactSection) {
+                contactSection.classList.add('hidden');
+            }
+            
+            // Smoothly scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ----------------------------------------------------
         // CONTACT FORM TOGGLE
         // ----------------------------------------------------
         const contactToggleBtn = document.getElementById('contactToggleBtn');
@@ -645,8 +666,17 @@
             e.preventDefault();
             contactSection.classList.toggle('hidden');
             if (!contactSection.classList.contains('hidden')) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-                // Optional: Auto-focus the first field
+                // Calculate scroll position offset for the sticky header
+                const headerOffset = 80;
+                const elementPosition = contactSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Auto-focus the first field without jumping the scroll
                 setTimeout(() => document.getElementById('senderName').focus({ preventScroll: true }), 300);
             }
         });
@@ -723,7 +753,7 @@
 
         function showNotification(message, type) {
             notification.textContent = message;
-            notification.className = "mb-6 p-4 rounded-md text-xs font-mono border transition-all";
+            notification.className = "mt-6 p-4 rounded-md text-xs font-mono border transition-all";
             if (type === 'error') {
                 notification.classList.add('bg-red-50', 'dark:bg-red-950/30', 'text-red-700', 'dark:text-red-400', 'border-red-200', 'dark:border-red-800');
             } else if (type === 'success') {
