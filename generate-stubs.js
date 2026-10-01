@@ -64,9 +64,6 @@ audiobooks.forEach(book => {
     <meta name="twitter:description" content="${book.synopsis}" />
     <meta name="twitter:image" content="${BASE_URL}/${book.coverUrl}" />
 
-    <!-- Fallback redirect for older browsers without JS -->
-    <meta http-equiv="refresh" content="0; url=${BASE_URL}/#${book.id}">
-
     <script>
         // Instantly redirect human users to the main page and trigger the auto-expand hash
         window.location.replace("${BASE_URL}/#${book.id}");
