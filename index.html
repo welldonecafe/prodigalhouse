@@ -417,7 +417,7 @@
                 }
 
                 const html = `
-                    <div class="repo-item flex justify-between items-center p-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1a1a1a] transition-colors ${!isLast ? 'border-b border-gray-200 dark:border-gray-800' : ''}" onclick="toggleAccordion('${book.id}')">
+                    <div id="${book.id}" class="repo-item flex justify-between items-center p-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1a1a1a] transition-colors scroll-mt-24 ${!isLast ? 'border-b border-gray-200 dark:border-gray-800' : ''}" onclick="toggleAccordion('${book.id}')">
                         <div class="flex items-center gap-3 font-mono text-sm">
                             <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                             <span class="font-medium text-gray-900 dark:text-gray-200">${book.title.replace(/\s+/g, '-').toLowerCase()}/</span>
@@ -431,9 +431,14 @@
                                 
                                 <div class="w-full md:w-1/3 flex flex-col gap-4">
                                     <div>
-                                        <div class="w-32 h-32 md:w-full md:h-auto md:aspect-square flex-shrink-0 relative group">
-                                            <img src="${book.coverUrl}" alt="Cover art for ${book.title}" class="w-full h-full object-cover rounded shadow-sm transition-all duration-500 group-hover:brightness-110 group-hover:shadow-md">
-                                            <div class="absolute inset-0 border border-black/10 dark:border-white/10 rounded pointer-events-none"></div>
+                                        <div class="w-32 h-32 md:w-full md:h-auto md:aspect-square flex-shrink-0 relative group rounded overflow-hidden">
+                                            <img src="${book.coverUrl}" alt="Cover art for ${book.title}" class="w-full h-full object-cover transition-all duration-500 group-hover:brightness-110 group-hover:shadow-md">
+                                            <div class="absolute inset-0 border border-black/10 dark:border-white/10 pointer-events-none"></div>
+                                            
+                                            <!-- Share Button Overlay -->
+                                            <button onclick="copyShareLink(event, '${book.id}')" class="absolute top-2 right-2 bg-white/80 dark:bg-black/80 backdrop-blur-sm p-1.5 rounded text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all shadow-sm z-10" aria-label="Copy share link" title="Copy link to ${book.title}">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                            </button>
                                         </div>
                                         ${pdfButtonHtml}
                                     </div>
@@ -486,6 +491,35 @@
                 content.classList.add('expanded');
             }
         }
+
+        // ----------------------------------------------------
+        // SHARING & AUTO-EXPAND LOGIC
+        // ----------------------------------------------------
+        
+        // Copy the specific audiobook link to clipboard
+        window.copyShareLink = function(event, bookId) {
+            event.stopPropagation();
+            const url = window.location.origin + window.location.pathname + '#' + bookId;
+            navigator.clipboard.writeText(url).then(() => {
+                showNotification('Link copied to clipboard!', 'success');
+            }).catch(() => {
+                showNotification('Failed to copy link.', 'error');
+            });
+        };
+
+        // Check for URL hash on page load to auto-expand shared books
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const hash = window.location.hash.substring(1);
+                if (hash && audiobooks.some(b => b.id === hash)) {
+                    toggleAccordion(hash);
+                    const targetEl = document.getElementById(hash);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }, 100); // Slight delay ensures DOM is fully rendered
+        });
 
         // ----------------------------------------------------
         // AUDIO PLAYER ENGINE
