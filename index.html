@@ -499,10 +499,7 @@
         // Copy the specific audiobook link to clipboard
         window.copyShareLink = function(event, bookId) {
             event.stopPropagation();
-            // Critical fix: Share the physical directory path so scrapers can read the OG tags.
-            // Scrapers drop the '#' symbol, so we must share the stub folder URL.
-            const baseUrl = window.location.origin.replace(/\/$/, ""); // Ensure no trailing slash on origin
-            const url = baseUrl + '/' + bookId + '/';
+            const url = window.location.origin + window.location.pathname + '#' + bookId;
             navigator.clipboard.writeText(url).then(() => {
                 showNotification('Link copied to clipboard!', 'success');
             }).catch(() => {
